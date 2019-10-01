@@ -37,6 +37,8 @@ if [ -n "$COVERAGE" ]; then
   mkdir -p code-coverage
 fi
 
+CGO_ENABLED=0 go build -o "$GIT_ROOT/binaries/quarks-job" code.cloudfoundry.org/quarks-job/cmd
+
 NODES=${NODES:-3}
 FLAKE_ATTEMPTS=${FLAKE_ATTEMPTS:-3}
 ginkgo ${FOCUS:+ --focus "$FOCUS"} \
