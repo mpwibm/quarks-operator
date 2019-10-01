@@ -1,0 +1,4 @@
+dependencies:
+  - name: quarks-job
+    version: v0.0.0%2B0.gb5dc240.tgz
+    repository: https://cf-operators.s3.amazonaws.com/helm-charts/
