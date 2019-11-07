@@ -133,7 +133,7 @@ variables:
 					Namespace: "default",
 				},
 				Data: map[string]string{bdc.ManifestSpecName: `---
-name: foo
+name: manifest-with-dns
 addons:
 - name: bosh-dns-aliases
   jobs:
