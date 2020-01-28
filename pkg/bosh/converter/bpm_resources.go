@@ -139,6 +139,7 @@ func (kc *KubeConverter) serviceToQuarksStatefulSet(
 		Spec: qstsv1a1.QuarksStatefulSetSpec{
 			Zones:                instanceGroup.AZs,
 			UpdateOnConfigChange: true,
+			ActivePassiveProbe:   instanceGroup.Properties.Quarks.ActivePassiveProbe,
 			Template: appsv1.StatefulSet{
 				ObjectMeta: metav1.ObjectMeta{
 					Name:        instanceGroup.NameSanitized(),
