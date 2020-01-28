@@ -324,7 +324,7 @@ var _ = Describe("kube converter", func() {
 
 		Context("when an active/passive probe is defined", func() {
 			BeforeEach(func() {
-				m, err = env.BOSHManifestWithActivePassiveProbe()
+				m, err = env.BOSHManifestWithActivePassiveProbes()
 				Expect(err).NotTo(HaveOccurred())
 			})
 
@@ -332,9 +332,9 @@ var _ = Describe("kube converter", func() {
 				resources, err := act(bpm.Configs{}, m.InstanceGroups[0])
 				Expect(err).ShouldNot(HaveOccurred())
 				qSts := resources.InstanceGroups[0]
-				Expect(qSts.Spec.ActivePassiveProbe).ToNot(BeNil())
-				Expect(qSts.Spec.ActivePassiveProbe["some-bpm-process"].Handler.Exec.Command).To(Equal([]string{"ls", "/"}))
-				Expect(qSts.Spec.ActivePassiveProbe["another-bpm-process"].Handler.Exec.Command).To(Equal([]string{"find", "*"}))
+				Expect(qSts.Spec.ActivePassiveProbes).ToNot(BeNil())
+				Expect(qSts.Spec.ActivePassiveProbes["some-bpm-process"].Handler.Exec.Command).To(Equal([]string{"ls", "/"}))
+				Expect(qSts.Spec.ActivePassiveProbes["another-bpm-process"].Handler.Exec.Command).To(Equal([]string{"find", "*"}))
 			})
 		})
 
