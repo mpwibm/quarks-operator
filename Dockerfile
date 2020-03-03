@@ -1,4 +1,4 @@
-FROM golang:1.13.3 AS build
+ROM golang:1.13.3 AS build
 ARG GOPROXY
 ENV GOPROXY $GOPROXY
 ARG GO111MODULE="on"
