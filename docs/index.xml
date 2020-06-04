@@ -3615,10 +3615,10 @@ nats-1&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
     
     <item>
       <title>Docs: </title>
-      <link>https://quarks.suse.dev/docs/examples/quarks-link/readme/</link>
+      <link>https://quarks.suse.dev/docs/examples/quarks-link/native-to-bosh/readme/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://quarks.suse.dev/docs/examples/quarks-link/readme/</guid>
+      <guid>https://quarks.suse.dev/docs/examples/quarks-link/native-to-bosh/readme/</guid>
       <description>
         
         
@@ -3630,11 +3630,11 @@ nats-1&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;#use-cases&#34;&gt;Use Cases&lt;/a&gt;
 
 &lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;#boshdeployment-with-external-consumeryaml&#34;&gt;boshdeployment-with-external-consumer.yaml&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#boshdeployment&#34;&gt;boshdeployment.yaml&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h3 id=&#34;boshdeployment-with-external-consumer-yaml&#34;&gt;boshdeployment-with-external-consumer.yaml&lt;/h3&gt;
+&lt;h3 id=&#34;boshdeployment&#34;&gt;boshdeployment&lt;/h3&gt;
 
 &lt;p&gt;This is a &lt;code&gt;BOSHDeployment&lt;/code&gt; which consumes a link of a native Kubernetes &lt;code&gt;Pod&lt;/code&gt; from a &lt;code&gt;Deployment&lt;/code&gt;. Before creating the &lt;code&gt;BOSHDeployment&lt;/code&gt; in the cluster, create the native Kubernetes requirements by creating link-secret, link-pod and link-service resources.&lt;/p&gt;
 

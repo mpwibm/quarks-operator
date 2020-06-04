@@ -21,29 +21,23 @@
 <link rel="icon" type="image/png" href="/favicons/android-192x192.png" sizes="192x192">
 
 <title>Quarks project</title><meta property="og:title" content="" />
-<meta property="og:description" content=" Kubernetes Controllers This folder contains design documents for the Kubernetes controllers that make up the cf-operator.
-Additional Resources Draw.io with the sources for the quarks_deployment_flow-*png controller charts:
- https://drive.google.com/file/d/1Uk2h5pOmY-gLtbfpDNO3POTcqI5UdZgj/view?usp=sharing  " />
+<meta property="og:description" content="Use Cases  Use Cases  boshdeployment.yaml   boshdeployment This is a BOSHDeployment which consumes a link of a native Kubernetes Pod from a Deployment. Before creating the BOSHDeployment in the cluster, create the native Kubernetes requirements by creating link-secret, link-pod and link-service resources." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://quarks.suse.dev/docs/controllers/readme/" />
+<meta property="og:url" content="https://quarks.suse.dev/docs/examples/quarks-link/native-to-bosh/readme/" />
 <meta property="og:site_name" content="Quarks project" />
 <meta itemprop="name" content="">
-<meta itemprop="description" content=" Kubernetes Controllers This folder contains design documents for the Kubernetes controllers that make up the cf-operator.
-Additional Resources Draw.io with the sources for the quarks_deployment_flow-*png controller charts:
- https://drive.google.com/file/d/1Uk2h5pOmY-gLtbfpDNO3POTcqI5UdZgj/view?usp=sharing  ">
+<meta itemprop="description" content="Use Cases  Use Cases  boshdeployment.yaml   boshdeployment This is a BOSHDeployment which consumes a link of a native Kubernetes Pod from a Deployment. Before creating the BOSHDeployment in the cluster, create the native Kubernetes requirements by creating link-secret, link-pod and link-service resources.">
 
 
 
-<meta itemprop="wordCount" content="28">
+<meta itemprop="wordCount" content="41">
 
 
 
 <meta itemprop="keywords" content="" />
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content=""/>
-<meta name="twitter:description" content=" Kubernetes Controllers This folder contains design documents for the Kubernetes controllers that make up the cf-operator.
-Additional Resources Draw.io with the sources for the quarks_deployment_flow-*png controller charts:
- https://drive.google.com/file/d/1Uk2h5pOmY-gLtbfpDNO3POTcqI5UdZgj/view?usp=sharing  "/>
+<meta name="twitter:description" content="Use Cases  Use Cases  boshdeployment.yaml   boshdeployment This is a BOSHDeployment which consumes a link of a native Kubernetes Pod from a Deployment. Before creating the BOSHDeployment in the cluster, create the native Kubernetes requirements by creating link-secret, link-pod and link-service resources."/>
 
 
 
@@ -162,7 +156,7 @@ Additional Resources Draw.io with the sources for the quarks_deployment_flow-*pn
 
 <ul class="td-sidebar-nav__section pr-md-3">
   <li class="td-sidebar-nav__section-title">
-    <a  href="/docs/" class="align-left pl-0 pr-2 td-sidebar-link td-sidebar-link__section">Documentation</a>
+    <a  href="/docs/" class="align-left pl-0 pr-2 active td-sidebar-link td-sidebar-link__section">Documentation</a>
   </li>
   <ul>
     <li class="collapse show" id="docs">
@@ -226,10 +220,10 @@ Additional Resources Draw.io with the sources for the quarks_deployment_flow-*pn
 
 <ul class="td-sidebar-nav__section pr-md-3">
   <li class="td-sidebar-nav__section-title">
-    <a  href="/docs/controllers/" class="align-left pl-0 pr-2 active td-sidebar-link td-sidebar-link__section">Controllers</a>
+    <a  href="/docs/controllers/" class="align-left pl-0 pr-2 collapsed td-sidebar-link td-sidebar-link__section">Controllers</a>
   </li>
   <ul>
-    <li class="collapse show" id="docs-controllers">
+    <li class="collapse " id="docs-controllers">
       
       
       
@@ -260,7 +254,7 @@ Additional Resources Draw.io with the sources for the quarks_deployment_flow-*pn
       
       
       
-      <a class="td-sidebar-link td-sidebar-link__page  active" id="m-docs-controllers-readme" href="/docs/controllers/readme/"></a>
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docs-controllers-readme" href="/docs/controllers/readme/"></a>
       
       
     </li>
@@ -513,7 +507,7 @@ Additional Resources Draw.io with the sources for the quarks_deployment_flow-*pn
       
       
       
-      <a class="td-sidebar-link td-sidebar-link__page " id="m-docs-examples-quarks-link-native-to-bosh-readme" href="/docs/examples/quarks-link/native-to-bosh/readme/"></a>
+      <a class="td-sidebar-link td-sidebar-link__page  active" id="m-docs-examples-quarks-link-native-to-bosh-readme" href="/docs/examples/quarks-link/native-to-bosh/readme/"></a>
       
       
       
@@ -553,7 +547,7 @@ Additional Resources Draw.io with the sources for the quarks_deployment_flow-*pn
 
 
 
-<a href="https://github.com/cloudfoundry-incubator/quarks-operator/edit/master/website/content/en/docs/controllers/README.md" target="_blank"><i class="fa fa-edit fa-fw"></i> Edit this page</a>
+<a href="https://github.com/cloudfoundry-incubator/quarks-operator/edit/master/website/content/en/docs/examples/quarks-link/native-to-bosh/README.md" target="_blank"><i class="fa fa-edit fa-fw"></i> Edit this page</a>
 <a href="https://github.com/cloudfoundry-incubator/quarks-operator/issues/new?title=" target="_blank"><i class="fab fa-github fa-fw"></i> Create documentation issue</a>
 
 </div>
@@ -580,9 +574,6 @@ Additional Resources Draw.io with the sources for the quarks_deployment_flow-*pn
 
 
 
-
-
-
 <li class="breadcrumb-item" >
 	<a href="https://quarks.suse.dev/docs/">Documentation</a>
 </li>
@@ -590,15 +581,8 @@ Additional Resources Draw.io with the sources for the quarks_deployment_flow-*pn
 
 
 
-<li class="breadcrumb-item" >
-	<a href="https://quarks.suse.dev/docs/controllers/">Controllers</a>
-</li>
-
-
-
-
 <li class="breadcrumb-item active" aria-current="page">
-	<a href="https://quarks.suse.dev/docs/controllers/readme/"></a>
+	<a href="https://quarks.suse.dev/docs/examples/quarks-link/native-to-bosh/readme/"></a>
 </li>
 
 	</ol>
@@ -611,17 +595,19 @@ Additional Resources Draw.io with the sources for the quarks_deployment_flow-*pn
 	       
 	
 
-<h1 id="kubernetes-controllers">Kubernetes Controllers</h1>
-
-<p>This folder contains design documents for the Kubernetes controllers that make up the cf-operator.</p>
-
-<h2 id="additional-resources">Additional Resources</h2>
-
-<p>Draw.io with the sources for the <code>quarks_deployment_flow-*png</code> controller charts:</p>
+<h2 id="use-cases">Use Cases</h2>
 
 <ul>
-<li><a href="https://drive.google.com/file/d/1Uk2h5pOmY-gLtbfpDNO3POTcqI5UdZgj/view?usp=sharing" target="_blank">https://drive.google.com/file/d/1Uk2h5pOmY-gLtbfpDNO3POTcqI5UdZgj/view?usp=sharing</a></li>
+<li><a href="#use-cases">Use Cases</a>
+
+<ul>
+<li><a href="#boshdeployment">boshdeployment.yaml</a></li>
+</ul></li>
 </ul>
+
+<h3 id="boshdeployment">boshdeployment</h3>
+
+<p>This is a <code>BOSHDeployment</code> which consumes a link of a native Kubernetes <code>Pod</code> from a <code>Deployment</code>. Before creating the <code>BOSHDeployment</code> in the cluster, create the native Kubernetes requirements by creating link-secret, link-pod and link-service resources.</p>
 
 	
 	

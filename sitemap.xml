@@ -157,7 +157,7 @@
   </url>
   
   <url>
-    <loc>https://quarks.suse.dev/docs/examples/quarks-link/readme/</loc>
+    <loc>https://quarks.suse.dev/docs/examples/quarks-link/native-to-bosh/readme/</loc>
     <priority>0</priority>
   </url>
   
@@ -173,17 +173,17 @@
   
   <url>
     <loc>https://quarks.suse.dev/community/</loc>
-    <lastmod>2020-06-03T16:55:14+02:00</lastmod>
+    <lastmod>2020-06-04T14:45:43+02:00</lastmod>
   </url>
   
   <url>
     <loc>https://quarks.suse.dev/</loc>
-    <lastmod>2020-06-03T16:55:14+02:00</lastmod>
+    <lastmod>2020-06-04T14:45:43+02:00</lastmod>
   </url>
   
   <url>
     <loc>https://quarks.suse.dev/search/</loc>
-    <lastmod>2020-06-03T16:55:14+02:00</lastmod>
+    <lastmod>2020-06-04T14:45:43+02:00</lastmod>
   </url>
   
 </urlset>
