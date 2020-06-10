@@ -383,16 +383,16 @@ var _ = Describe("InstanceGroupResolver", func() {
 					Expect(err).NotTo(HaveOccurred())
 					ig = "log-api"
 
-					fileP1, err := fs.Create(converter.VolumeLinksPath + "doppler/fooprop")
+					fileP1, err := fs.Create(converter.VolumeLinksPath + "doppler/link")
 					Expect(err).NotTo(HaveOccurred())
 					defer fileP1.Close()
-					_, err = fileP1.WriteString("fake_prop")
+					_, err = fileP1.WriteString(`{"doppler.fooprop": "fake_prop"}`)
 					Expect(err).NotTo(HaveOccurred())
 
-					fileP2, err := fs.Create(converter.VolumeLinksPath + "doppler/grpc_port")
+					fileP2, err := fs.Create(converter.VolumeLinksPath + "doppler/link")
 					Expect(err).NotTo(HaveOccurred())
 					defer fileP2.Close()
-					_, err = fileP2.WriteString(`7765`)
+					_, err = fileP2.WriteString(`{"doppler.rpc_port": 7765}`)
 					Expect(err).NotTo(HaveOccurred())
 
 				})

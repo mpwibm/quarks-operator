@@ -112,9 +112,35 @@ func (jpl jobProviderLinks) AddExternalLink(linkName string, linkType string, li
 		jpl.links[linkType] = map[string]JobLink{}
 	}
 
+	nestedProperties := map[string]interface{}{}
+	for propertyName, value := range properties {
+
+		items := strings.Split(propertyName, ".")
+		currentLevel := nestedProperties
+
+		for idx, gram := range items {
+			if idx == len(items)-1 {
+				currentLevel[gram] = value
+				continue
+			}
+
+			// Path doesn't exist, create it
+			if _, ok := currentLevel[gram]; !ok {
+				currentLevel[gram] = map[string]interface{}{}
+			}
+
+			// This is not the leaf, and we must make sure we have a map
+			if _, ok := currentLevel[gram].(map[string]interface{}); !ok {
+				currentLevel[gram] = map[string]interface{}{}
+			}
+
+			currentLevel = currentLevel[gram].(map[string]interface{})
+		}
+	}
+
 	jpl.links[linkType][linkName] = JobLink{
 		Address:    linkAddress,
 		Instances:  jobsInstances,
-		Properties: properties,
+		Properties: nestedProperties,
 	}
 }

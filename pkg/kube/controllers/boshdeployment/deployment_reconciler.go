@@ -305,7 +305,7 @@ func (r *ReconcileBOSHDeployment) listLinkInfos(bdpl *bdv1.BOSHDeployment, manif
 					})
 
 					if linkProvider.ProviderType != "" {
-						quarksLinks[s.Name] = bdm.QuarksLink{
+						quarksLinks[linkProvider.Name] = bdm.QuarksLink{
 							Type: linkProvider.ProviderType,
 						}
 					}
