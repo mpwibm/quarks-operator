@@ -20,7 +20,7 @@ quarks_utils_version=$(echo $quarks_utils_version | sed 's/.*-//g') # Keep only 
 
 # Clone quarks-utils if necessary and checkout the commit from go.mod
 if [ ! -d "$GIT_ROOT/tools/quarks-utils" ]; then
-    git clone "https://github.com/cloudfoundry-incubator/quarks-utils" "$GIT_ROOT/tools/quarks-utils"
+    git clone https://github.com/cloudfoundry-incubator/quarks-utils -b rohit/coverage --single-branch "$GIT_ROOT/tools/quarks-utils"
 fi
 
 pushd "$GIT_ROOT/tools/quarks-utils"
