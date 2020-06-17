@@ -867,13 +867,7 @@ The operator watches all the &lt;code&gt;ConfigMaps&lt;/code&gt; and &lt;code&gt
 
 &lt;h4 id=&#34;extended-upgrade-support&#34;&gt;Extended Upgrade Support&lt;/h4&gt;
 
-&lt;p&gt;When an update needs to happen, a second &lt;code&gt;StatefulSet&lt;/code&gt; for the new version is deployed, and both coexist until canary conditions are met. This also allows support for Blue/Green techniques.&lt;/p&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;&lt;strong&gt;Note:&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;This could make integration with &lt;a href=&#34;https://istio.io/&#34; target=&#34;_blank&#34;&gt;Istio&lt;/a&gt; easier and (more) seamless.&lt;/p&gt;
-&lt;/blockquote&gt;
+&lt;p&gt;When an update needs to happen, a second &lt;code&gt;StatefulSet&lt;/code&gt; for the new version is deployed, and both coexist until canary conditions are met.&lt;/p&gt;
 
 &lt;p&gt;Annotated with a version (auto-incremented on each update). The annotation key is &lt;code&gt;quarks.cloudfoundry.org/version&lt;/code&gt;.&lt;/p&gt;
 
