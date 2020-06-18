@@ -23,20 +23,22 @@
 <title>Service wait for Kubernetes native pods | Quarks project</title><meta property="og:title" content="Service wait for Kubernetes native pods" />
 <meta property="og:description" content="To support clean deployments and correct depedency management, the quarks-operator allows a Kubernetes Pod to wait until one (or more) Service is available.
 The operator does that by injecting an InitContainer which waits for the service to be up.
+This is a generalization of the serialization hints natively available to all BOSH deployments.
 The Pods needs to have the quarks.cloudfoundry.org/wait-for annotation, for example:
-apiVersion:v1kind:Podmetadata:annotations:quarks.cloudfoundry.org/wait-for:&#39;[ &#34;nats-headless&#34; , &#34;nginx&#34; ]&#39;" />
+apiVersion:v1kind:Podmetadata:annotations:quarks.cloudfoundry.org/wait-for:&#39;[ &#34;nats-headless&#34; , &#34;nginx&#34; ]&#39; At the ops level this is achieved by an instruction like" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://quarks.suse.dev/docs/features/waiting_services/" />
 <meta property="og:site_name" content="Quarks project" />
 <meta itemprop="name" content="Service wait for Kubernetes native pods">
 <meta itemprop="description" content="To support clean deployments and correct depedency management, the quarks-operator allows a Kubernetes Pod to wait until one (or more) Service is available.
 The operator does that by injecting an InitContainer which waits for the service to be up.
+This is a generalization of the serialization hints natively available to all BOSH deployments.
 The Pods needs to have the quarks.cloudfoundry.org/wait-for annotation, for example:
-apiVersion:v1kind:Podmetadata:annotations:quarks.cloudfoundry.org/wait-for:&#39;[ &#34;nats-headless&#34; , &#34;nginx&#34; ]&#39;">
+apiVersion:v1kind:Podmetadata:annotations:quarks.cloudfoundry.org/wait-for:&#39;[ &#34;nats-headless&#34; , &#34;nginx&#34; ]&#39; At the ops level this is achieved by an instruction like">
 
 
 
-<meta itemprop="wordCount" content="54">
+<meta itemprop="wordCount" content="219">
 
 
 
@@ -45,8 +47,9 @@ apiVersion:v1kind:Podmetadata:annotations:quarks.cloudfoundry.org/wait-for:&#39;
 <meta name="twitter:title" content="Service wait for Kubernetes native pods"/>
 <meta name="twitter:description" content="To support clean deployments and correct depedency management, the quarks-operator allows a Kubernetes Pod to wait until one (or more) Service is available.
 The operator does that by injecting an InitContainer which waits for the service to be up.
+This is a generalization of the serialization hints natively available to all BOSH deployments.
 The Pods needs to have the quarks.cloudfoundry.org/wait-for annotation, for example:
-apiVersion:v1kind:Podmetadata:annotations:quarks.cloudfoundry.org/wait-for:&#39;[ &#34;nats-headless&#34; , &#34;nginx&#34; ]&#39;"/>
+apiVersion:v1kind:Podmetadata:annotations:quarks.cloudfoundry.org/wait-for:&#39;[ &#34;nats-headless&#34; , &#34;nginx&#34; ]&#39; At the ops level this is achieved by an instruction like"/>
 
 
 
@@ -115,7 +118,7 @@ apiVersion:v1kind:Podmetadata:annotations:quarks.cloudfoundry.org/wait-for:&#39;
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.d38a692fd9e9ce526c815b80bd2a61fa60d83d02a101045b0a299bcd42ad07bf1afa18132b254d712039bf063d504101bdf182cc7736a47fecc8a2133bee3641.json"
+  data-offline-search-index-json-src="/offline-search-index.8f467682d0bfba98d56a46db8bf344cdbed626e8e62bcd4549ca3af92d09d74052c348745679a6a309c7b94c9df223dfdb8a1cc420510c35bbc7376c3611e9e8.json"
   data-offline-search-base-href="/"
 >
 
@@ -145,7 +148,7 @@ apiVersion:v1kind:Podmetadata:annotations:quarks.cloudfoundry.org/wait-for:&#39;
   aria-label="Search this site…"
   autocomplete="off"
   
-  data-offline-search-index-json-src="/offline-search-index.d38a692fd9e9ce526c815b80bd2a61fa60d83d02a101045b0a299bcd42ad07bf1afa18132b254d712039bf063d504101bdf182cc7736a47fecc8a2133bee3641.json"
+  data-offline-search-index-json-src="/offline-search-index.8f467682d0bfba98d56a46db8bf344cdbed626e8e62bcd4549ca3af92d09d74052c348745679a6a309c7b94c9df223dfdb8a1cc420510c35bbc7376c3611e9e8.json"
   data-offline-search-base-href="/"
 >
 
@@ -614,12 +617,37 @@ apiVersion:v1kind:Podmetadata:annotations:quarks.cloudfoundry.org/wait-for:&#39;
 
 <p>The operator does that by injecting an <code>InitContainer</code> which waits for the service to be up.</p>
 
+<p>This is a generalization of the serialization hints natively available to all BOSH deployments.</p>
+
 <p>The <code>Pod</code>s needs to have the <code>quarks.cloudfoundry.org/wait-for</code> annotation, for example:</p>
 <div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml">apiVersion<span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span>v1<span style="color:#f8f8f8;text-decoration:underline">
 </span><span style="color:#f8f8f8;text-decoration:underline"> </span>kind<span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span>Pod<span style="color:#f8f8f8;text-decoration:underline">
 </span><span style="color:#f8f8f8;text-decoration:underline"> </span>metadata<span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
 </span><span style="color:#f8f8f8;text-decoration:underline">   </span>annotations<span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
 </span><span style="color:#f8f8f8;text-decoration:underline">     </span>quarks.cloudfoundry.org/wait-for<span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#4e9a06">&#39;[ &#34;nats-headless&#34; , &#34;nginx&#34; ]&#39;</span></code></pre></div>
+<p>At the ops level this is achieved by an instruction like</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml">-<span style="color:#f8f8f8;text-decoration:underline"> </span>type<span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span>replace<span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">  </span>path<span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span>/instance_groups/name=THE_INSTANCE_GROUP/env<span style="color:#000;font-weight:bold">?</span>/bosh/agent/settings/annotations/quarks.cloudfoundry.org~1wait-for<span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">  </span>value<span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#4e9a06">&#39;[ &#34;uaa&#34; ]&#39;</span></code></pre></div>
+<dl>
+<dt>The <code>env/bosh/agent/settings/annotations</code> key is a hash used by the operator to add additional annotations to the k8s objects it creates for an instance group. IOW they are applied to the generated <code>quarks-statefulset</code>, <code>statefulset</code>, and <code>pod</code>.</dt>
+</dl>
+
+<p>:warning: Note that while the dependency information is ultimately processed as a json array of strings, at the level of the annotations it has to be specified as a plain string. Just one which contains proper json syntax.</p>
+
+<p>If full custom dependencies are not required, just (partial) serial startup of instance groups (in the order of their specification in their deployment) then the native serialization hints are likely good enough.</p>
+
+<p>They are specified via a construction of the form</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml">instance_groups<span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline"></span>-<span style="color:#f8f8f8;text-decoration:underline"> </span>name<span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span>THE_INSTANCE_GROUP<span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">  </span>update<span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">    </span>serial<span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#204a87;font-weight:bold">true</span></code></pre></div>
+<p>in the BOSH deployment, if under direct control, or via an ops file like</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml">-<span style="color:#f8f8f8;text-decoration:underline"> </span>type<span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span>replace<span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">  </span>path<span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span>/instance_groups/name=THE_INSTANCE_GROUP/update/serial<span style="color:#f8f8f8;text-decoration:underline">
+</span><span style="color:#f8f8f8;text-decoration:underline">  </span>value<span style="color:#000;font-weight:bold">:</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#204a87;font-weight:bold">true</span></code></pre></div>
+<p>if the deployment cannot be modified directly.</p>
+
 	
 	
 	<div class="text-muted mt-5 pt-3 border-top">Last modified January 1, 0001
