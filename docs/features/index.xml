@@ -63,11 +63,11 @@ The &lt;em&gt;current version&lt;/em&gt; of the manifest is the greatest version
 
 &lt;p&gt;Also known as &amp;ldquo;Quarks Links&amp;rdquo; - they provide a way to share/discover information between BOSH and Kube Native components.&lt;/p&gt;
 
-&lt;h2 id=&#34;native-bosh&#34;&gt;Native -&amp;gt; BOSH&lt;/h2&gt;
+&lt;h2 id=&#34;using-k8s-native-values-in-bosh-deployments-native-bosh&#34;&gt;Using k8s Native Values in BOSH Deployments (Native -&amp;gt; BOSH)&lt;/h2&gt;
 
 &lt;p&gt;In this case, the native component is a provider, and the BOSH component is a consumer.&lt;/p&gt;
 
-&lt;p&gt;We construct link information like so:&lt;/p&gt;
+&lt;p&gt;We construct link information from the native resources like this:&lt;/p&gt;
 
 &lt;table&gt;
 &lt;thead&gt;
@@ -82,7 +82,7 @@ The &lt;em&gt;current version&lt;/em&gt; of the manifest is the greatest version
 &lt;tr&gt;
 &lt;td&gt;address&lt;/td&gt;
 &lt;td&gt;Service&lt;/td&gt;
-&lt;td&gt;DNS address of a Kubernetes service annotated  &lt;code&gt;quarks.cloudfoundry.org/provides = LINK_NAME&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;DNS address of a k8s &lt;em&gt;service&lt;/em&gt; annotated  &lt;code&gt;quarks.cloudfoundry.org/provides = LINK_NAME&lt;/code&gt;&lt;/td&gt;
 &lt;/tr&gt;
 
 &lt;tr&gt;
@@ -94,19 +94,19 @@ The &lt;em&gt;current version&lt;/em&gt; of the manifest is the greatest version
 &lt;tr&gt;
 &lt;td&gt;p&lt;/td&gt;
 &lt;td&gt;&lt;/td&gt;
-&lt;td&gt;properties retrieved from a secret annotated &lt;code&gt;quarks.cloudfoundry.org/provides = LINK_NAME&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;properties retrieved from a &lt;em&gt;secret&lt;/em&gt; annotated &lt;code&gt;quarks.cloudfoundry.org/provides = LINK_NAME&lt;/code&gt;&lt;/td&gt;
 &lt;/tr&gt;
 
 &lt;tr&gt;
 &lt;td&gt;instances.name&lt;/td&gt;
 &lt;td&gt;Pod&lt;/td&gt;
-&lt;td&gt;name of pod selected by the Kube Service that&amp;rsquo;s annotated &lt;code&gt;quarks.cloudfoundry.org/provides = LINK_NAME&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;name of &lt;em&gt;pod&lt;/em&gt; selected by the k8s &lt;em&gt;service&lt;/em&gt; that&amp;rsquo;s annotated &lt;code&gt;quarks.cloudfoundry.org/provides = LINK_NAME&lt;/code&gt;&lt;/td&gt;
 &lt;/tr&gt;
 
 &lt;tr&gt;
 &lt;td&gt;instances.id&lt;/td&gt;
 &lt;td&gt;Pod&lt;/td&gt;
-&lt;td&gt;pod uid&lt;/td&gt;
+&lt;td&gt;&lt;em&gt;pod&lt;/em&gt; uid&lt;/td&gt;
 &lt;/tr&gt;
 
 &lt;tr&gt;
@@ -124,7 +124,7 @@ The &lt;em&gt;current version&lt;/em&gt; of the manifest is the greatest version
 &lt;tr&gt;
 &lt;td&gt;instances.address&lt;/td&gt;
 &lt;td&gt;Pod&lt;/td&gt;
-&lt;td&gt;ip of pod&lt;/td&gt;
+&lt;td&gt;ip of &lt;em&gt;pod&lt;/em&gt;&lt;/td&gt;
 &lt;/tr&gt;
 
 &lt;tr&gt;
@@ -141,10 +141,12 @@ The &lt;em&gt;current version&lt;/em&gt; of the manifest is the greatest version
 
 &lt;h3 id=&#34;example-native-bosh&#34;&gt;Example (Native -&amp;gt; BOSH)&lt;/h3&gt;
 
-&lt;p&gt;Add the following yaml config to the job spec (job.MF) file in the nats release.&lt;/p&gt;
+&lt;p&gt;When a job consumes a link, it will have a section like this in the in its job spec (&lt;code&gt;job.MF&lt;/code&gt;), e.g. the nats release:&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-yaml&#34; data-lang=&#34;yaml&#34;&gt;consumes&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
 &lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;&lt;/span&gt;-&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;name&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;nats&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;  &lt;/span&gt;type&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;nats&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-yaml&#34; data-lang=&#34;yaml&#34;&gt;kind&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;Secret&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;  &lt;/span&gt;type&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;nats&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;We can create the following k8s secret to fulfill the link:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-yaml&#34; data-lang=&#34;yaml&#34;&gt;kind&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;Secret&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
 &lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;&lt;/span&gt;metadata&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
 &lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;  &lt;/span&gt;name&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;secretlink&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
 &lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;  &lt;/span&gt;annotations&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
@@ -152,8 +154,11 @@ The &lt;em&gt;current version&lt;/em&gt; of the manifest is the greatest version
 &lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;    &lt;/span&gt;quarks.cloudfoundry.org/provides&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#39;{&amp;#34;name&amp;#34;:&amp;#34;nats&amp;#34;,&amp;#34;type&amp;#34;:&amp;#34;nats&amp;#34;}&amp;#39;&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
 &lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;&lt;/span&gt;spec&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
 &lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;  &lt;/span&gt;data&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;    &lt;/span&gt;password&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;mysecret&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;Using this secret, I should be able to use &lt;code&gt;link(&amp;quot;nats&amp;quot;).p(&amp;quot;password&amp;quot;)&lt;/code&gt; in one of my BOSH templates.&lt;/p&gt;
+&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;    &lt;/span&gt;link&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;|
+&lt;/span&gt;&lt;span style=&#34;color:#8f5902;font-style:italic&#34;&gt;      nats.password: mysecret&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Using this secret, the nats release can use &lt;code&gt;link(&amp;quot;nats&amp;quot;).p(&amp;quot;password&amp;quot;)&lt;/code&gt; in its eruby templates.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-eruby&#34; data-lang=&#34;eruby&#34;&gt;&amp;#34;&amp;lt;%= p(&amp;#34;nats.password&amp;#34;) %&amp;gt;&amp;#34;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Furthermore, if there is a matching k8s service, it will be used in the link:&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-yaml&#34; data-lang=&#34;yaml&#34;&gt;apiVersion&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;v1&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
 &lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;&lt;/span&gt;kind&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;Service&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
 &lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;&lt;/span&gt;metadata&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
@@ -177,9 +182,10 @@ The &lt;em&gt;current version&lt;/em&gt; of the manifest is the greatest version
 
 &lt;p&gt;If the service is changed, or the list of pods selected by the service is changed, consumers of the link are automatically restarted.&lt;/p&gt;
 
-&lt;h2 id=&#34;bosh-native&#34;&gt;BOSH -&amp;gt; Native&lt;/h2&gt;
+&lt;h2 id=&#34;using-bosh-variables-in-k8s-pods-bosh-native&#34;&gt;Using BOSH Variables in k8s Pods (BOSH -&amp;gt; Native)&lt;/h2&gt;
 
-&lt;p&gt;In this case, the BOSH component is a provider, and the native component is a consumer.&lt;/p&gt;
+&lt;p&gt;In this case, the BOSH component is a provider, and the native component is a consumer.
+The native component is pod, which might belong to a deployment or statefulset.&lt;/p&gt;
 
 &lt;p&gt;The operator creates link secrets for all providers in a BOSH deployment. Each secret contains a flattened map with the provided properties:&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-yaml&#34; data-lang=&#34;yaml&#34;&gt;apiVersion&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;v1&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
@@ -224,16 +230,12 @@ This can be done by updating the template of the pod using an annotation.&lt;/p&
 &lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;      &lt;/span&gt;quarks.cloudfoundry.org/deployment&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;{{&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;.Values.deploymentName&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;}}&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
 &lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;      &lt;/span&gt;quarks.cloudfoundry.org/consumes&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#4e9a06&#34;&gt;&amp;#39;[{&amp;#34;name&amp;#34;:&amp;#34;nats&amp;#34;,&amp;#34;type&amp;#34;:&amp;#34;nats&amp;#34;}]&amp;#39;&lt;/span&gt;`&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;
 &lt;/span&gt;&lt;span style=&#34;color:#f8f8f8;text-decoration:underline&#34;&gt;    &lt;/span&gt;spec&lt;span style=&#34;color:#000;font-weight:bold&#34;&gt;:&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;and a CF-Deployment with Operator
-Instance Groups:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;API&lt;/li&gt;
-&lt;li&gt;Diego Cell&lt;/li&gt;
-&lt;li&gt;Gorouter&lt;/li&gt;
-&lt;li&gt;NATS
-provides: nats&lt;/li&gt;
-&lt;/ul&gt;
+&lt;p&gt;and a CF-Deployment with Operator, which has the following instance groups:
+- API
+- Diego Cell
+- Gorouter
+- NATS
+  &lt;code&gt;provides: nats&lt;/code&gt;&lt;/p&gt;
 
       </description>
     </item>
